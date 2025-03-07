@@ -1,0 +1,234 @@
+:root {
+    --primary: #2563eb;
+    --success: #10b981;
+    --dark: #1e293b;
+    --light: #f8fafc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/* Prevent content overflow in PDF */
+.confirmation-content {
+overflow: visible !important;
+}
+
+/* Force vector-based rendering for text */
+body {
+-webkit-print-color-adjust: exact !important;
+print-color-adjust: exact !important;
+}
+
+body {
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    min-height: 100vh;
+}
+
+.confirmation-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.confirmation-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: slideIn 0.6s ease-out;
+}
+
+.checkmark-circle {
+    width: 100px;
+    height: 100px;
+    background: var(--success);
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounce 1s ease;
+}
+
+.checkmark {
+    color: white;
+    font-size: 3.5rem;
+}
+
+.confirmation-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    background: white;
+    border-radius: 2rem;
+    padding: 3rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-out;
+    position: relative;
+}
+
+.order-details-section {
+    border-right: 2px solid #e5e7eb;
+    padding-right: 3rem;
+}
+
+.detail-card {
+    background: #f8fafc;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.detail-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.order-timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.timeline-icon {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+
+.timeline-item.active .timeline-icon {
+    border-color: var(--success);
+    background: var(--success);
+    color: white;
+}
+
+.timeline-line {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #e5e7eb;
+    z-index: 0;
+}
+
+.order-items {
+    margin: 2rem 0;
+}
+
+.order-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: all 0.3s;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    background: #f1f5f9;
+    padding: 0.5rem;
+}
+
+.price-summary {
+    background: #f8fafc;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+}
+
+.button-group {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.download-btn {
+    background: #dc2626;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 38, 38, 0.2);
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .confirmation-content {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+
+    .order-details-section {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 3rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+}

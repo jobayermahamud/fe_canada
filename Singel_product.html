@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/singel_product.css">
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <title>Singel Product</title>
+</head>
+
+<body>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> &gt; Samsung Galaxy S25 Ultra
+        </div>
+
+        <div class="product-container">
+            <div class="product-gallery">
+                <img src="images/s25.png" alt="P9 Bluetooth Headphones" class="main-image">
+                <div class="gallery-controls">
+
+                </div>
+                <div class="thumbnail-container">
+                    <img src="images/s25.png" alt="Thumbnail 1" class="thumbnail active">
+                    <img src="images/s252.png" alt="Thumbnail 2" class="thumbnail">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <p>Samsung Galaxy S25 Ultra / 25+ / 25 / Edge</p>
+                <div class="ratings">
+                    <div class="star">★</div>
+                    <div class="star">★</div>
+                    <div class="star">★</div>
+                    <div class="star">★</div>
+                    <div class="star">☆</div>
+                    <span class="rating-count">116 Ratings</span>
+                </div>
+
+                <div class="price-container">
+                    <span class="current-price">CA$1,859.94</span>
+                    <span class="original-price">CA$859.94</span>
+                    <span class="discount-badge">-32%</span>
+                </div>
+
+                <div class="flash-sale">
+                    <div class="flash-content">
+                        <div>
+                            <div class="flash-title">FLASH SALE</div>
+                            <div>Ending soon!</div>
+                        </div>
+                        <div class="flash-countdown">
+                            <div class="time-box">05</div>:
+                            <div class="time-box">34</div>:
+                            <div class="time-box">27</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-description">
+                    Released in Q1 2025, the Samsung Galaxy S25 Ultra sports a 6.9" Dynamic LTPO AMOLED display, with
+                    1440x3120 resolution and Gorilla Glass Armor 2 protection. There's a Qualcomm Snapdragon 8 Elite
+                    chipset, alongside either 256/12GB, 512/12GB, 1TB/12GB or 1TB/16GB of internal storage and RAM. The
+                    main shooter has a 200/10/50/50MP setup, with a 12MP selfie camera up front. This is all powered by
+                    a 5000mAh battery, with 45W wired charging and 15W wireless charging. The S25 and S25 Plus have
+                    similar features, but with smaller displays, lower capacity batteries, lower spec camera lenses, and
+                    smaller capacity storage/RAM options.
+                </div>
+                <p>Product Colors</p>
+                <div class="color-selector">
+                    <div class="color-option white selected"><img src="images/s25.png"></div>
+                    <div class="color-option white"><img src="images/s25_silver.jpg"></div>
+                    <div class="color-option white"><img src="images/s25_black.png"></div>
+                    <div class="color-option white"><img src="images/s25perpal.png"></div>
+                </div>
+
+
+                <div class="quantity-selector">
+                    <span class="option-label">Quantity</span>
+                    &nbsp;&nbsp;
+                    <button class="quantity-btn">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn">+</button>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn buy-now">Buy Now</button>
+                    <button class="action-btn add-to-cart">Add to Cart</button>
+                </div>
+
+                <div class="promotion">
+                    <div class="option-label">Promotions</div>
+                    <div class="info-item">
+                        <div class="info-icon">🏷️</div>
+                        Min. spend ৳ 299
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="delivery-info">
+            <div class="info-header">
+                <div class="info-title">Product Details</div>
+            </div>
+
+            <p>Released in Q1 2025, the Samsung Galaxy S25 Ultra sports a 6.9" Dynamic LTPO AMOLED display, with
+                1440x3120 resolution and Gorilla Glass Armor 2 protection. There's a Qualcomm Snapdragon 8 Elite
+                chipset, alongside either 256/12GB, 512/12GB, 1TB/12GB or 1TB/16GB of internal storage and RAM. The main
+                shooter has a 200/10/50/50MP setup, with a 12MP selfie camera up front. This is all powered by a 5000mAh
+                battery, with 45W wired charging and 15W wireless charging. The S25 and S25 Plus have similar features,
+                but with smaller displays, lower capacity batteries, lower spec camera lenses, and smaller capacity
+                storage/RAM options.</p>
+        </div>
+
+    </main>
+</body>
+<script src="js/singel_product.js"></script>
+
+<script>
+    // Wait for the document to be fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the relevant elements
+        const quantityInput = document.querySelector('.quantity-input');
+        const quantityButtons = document.querySelectorAll('.quantity-btn');
+
+        // Clear any existing event listeners by cloning the parent element
+        const parent = quantityInput.parentElement;
+        const newParent = parent.cloneNode(true);
+        parent.parentNode.replaceChild(newParent, parent);
+
+        // Get the elements again from the new parent
+        const newQuantityInput = newParent.querySelector('.quantity-input');
+        const newQuantityButtons = newParent.querySelectorAll('.quantity-btn');
+
+        // Add minus button click handler
+        newQuantityButtons[0].addEventListener('click', function (e) {
+            e.preventDefault();
+            // Get current value
+            let value = parseInt(newQuantityInput.value);
+            // Decrement if greater than 1
+            if (value > 1) {
+                newQuantityInput.value = value - 1;
+            }
+            return false; // Prevent any other handlers
+        });
+
+        // Add plus button click handler
+        newQuantityButtons[1].addEventListener('click', function (e) {
+            e.preventDefault();
+            // Get current value
+            let value = parseInt(newQuantityInput.value);
+            // Increment by exactly 1
+            newQuantityInput.value = value + 1;
+            return false; // Prevent any other handlers
+        });
+
+        // Fix the "Add to Cart" functionality
+        const actionButtons = document.querySelectorAll('.action-btn');
+
+        // Clear existing event listeners on action buttons
+        actionButtons.forEach(button => {
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
+
+            // Add new event listener
+            newButton.addEventListener('click', function () {
+                // Get current quantity
+                const qty = parseInt(newQuantityInput.value);
+
+                // Create product object
+                const product = {
+                    image: document.querySelector('.main-image').src,
+                    name: document.querySelector('.product-info p').textContent,
+                    price: document.querySelector('.current-price').textContent,
+                    quantity: qty, // Use the current quantity value
+                    time: new Date().toLocaleString()
+                };
+
+                // Get existing cart items
+                let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+                // Add new product
+                cartItems.push(product);
+
+                // Save to localStorage
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+                // Redirect to cart
+                window.location.href = 'cart.html';
+            });
+        });
+    });
+</script>
+
+</html>

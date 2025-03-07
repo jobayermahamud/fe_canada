@@ -1,0 +1,160 @@
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Product</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Product</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+
+    <!-- Table -->  
+    
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+
+    <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title" >List of Products</h3>
+                <a href="#add"><span style="float:right; cursor:pointer;">Add New</span></a>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body" style="overflow:auto;">
+                <table id="productTable" class="table table-bordered" style="width:100%">
+                  <thead class="thead-light">
+                  <tr>
+                <tr class="text-white">
+                    <th scope="col">Sl No</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Short Desc</th>
+                    <th scope="col">Long Desc</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Vendor</th>
+                    <th scope="col">ProductURL</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Company</th>
+                    <th scope="col">Province</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br><br>
+
+
+    <!-- Main content -->
+    <section class="content" id="add">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Add Product</h3>
+  
+                <div class="card-tools">
+                  <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                    <i class="fas fa-minus"></i></button>
+                </div>
+              </div>
+              <div class="card-body">
+
+                <div class="row">
+                    <!-- Left Column -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" id="productName">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Short Description</label>
+                            <input type="text" class="form-control" id="productShortDesc">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Long Description</label>
+                            <textarea class="form-control" id="productLongDesc"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Image</label>
+                            <input type="file" class="form-control" id="productImage">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Price</label>
+                            <input type="number" class="form-control" id="productPrice">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Stock</label>
+                            <input type="number" class="form-control" id="productStock">
+                        </div>
+                        
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">Product URL</label>
+                            <input type="text" class="form-control" id="productURL">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select class="form-control" id="categoryDropdown"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Vendor</label>
+                            <select class="form-control" id="vendorDropdown"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Company</label>
+                            <select class="form-control" id="companyDropdown"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Province</label>
+                            <select class="form-control" id="provinceDropdown"></select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Rating</label>
+                            <select class="form-control" id="ratingDropdown">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Button Centered Below the Form -->
+                <div class="text-left">
+                    <button type="button" onclick="SaveProduct()" class="btn btn-primary">Save</button>
+                </div>
+           </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+        </div>
+        
+      </div>
+     
+    </section>
+    <!-- /.content -->
+
+
+</div>

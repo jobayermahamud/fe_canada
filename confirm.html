@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order Confirmation</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css/confirm.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+        <link rel="icon" type="image/x-icon" href="images/logo.png">
+    </head>
+</head>
+
+<body>
+    <div class="confirmation-container">
+        <div class="confirmation-header">
+            <div class="checkmark-circle">
+                <i class="fas fa-check checkmark"></i>
+            </div>
+            <h1>Order Confirmed!</h1>
+            <p>Your order has been successfully placed</p>
+        </div>
+
+        <div class="confirmation-content" id="pdfContent">
+            <div class="order-details-section">
+                <div class="detail-card">
+                    <div class="detail-header">
+                        <div class="detail-icon">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <h2>Order Details</h2>
+                    </div>
+                    <div class="summary-row">
+                        <span>Order Number:</span>
+                        <strong id="orderNumber">#TS235689</strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Order Date:</span>
+                        <span id="orderDate">October 25, 2023</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Expected Delivery:</span>
+                        <span id="deliveryDate">October 30, 2023</span>
+                    </div>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header">
+                        <div class="detail-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h2>Shipping Details</h2>
+                    </div>
+                    <p><strong id="shippingName">John Doe</strong></p>
+                    <p id="shippingAddress">123 Tech Street</p>
+                    <p id="shippingCity">Tech City, TC 12345</p>
+                    <p id="shippingCountry">Canada</p>
+                    <p class="email" id="shippingEmail">john.doe@example.com</p>
+                </div>
+
+                <div class="detail-card">
+                    <div class="detail-header">
+                        <div class="detail-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h2>Payment Method</h2>
+                    </div>
+                    <div class="payment-method" id="paymentDetails">
+                        <p><strong>Cash on Delivery</strong></p>
+                        <p>Pay when you receive your order</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-summary-section">
+                <!-- ... (keep order summary header) ... -->
+
+                <div class="order-items" id="confirmationItems">
+                    <!-- Dynamic items will be inserted here -->
+                </div>
+
+                <div class="price-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="confirmSubtotal">CA$1,859.94</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span id="confirmShipping">CA$130.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax:</span>
+                        <span id="confirmTax">CA$258.59</span>
+                    </div>
+                    <div class="summary-row cod-fee" style="display: none;">
+                        <span>COD Fee:</span>
+                        <span id="codFee">CA$20.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <strong>Total:</strong>
+                        <strong id="confirmTotal">CA$2,268.53</strong>
+                    </div>
+                </div>
+
+                <div class="order-timeline">
+                    <div class="timeline-line"></div>
+                    <div class="timeline-item active">
+                        <div class="timeline-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div>
+                            <p><strong>Order Confirmed</strong></p>
+                            <p>October 25, 2023 - 10:30 AM</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div>
+                            <p><strong>Processing</strong></p>
+                            <p>Expected: October 26, 2023</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div>
+                            <p><strong>Shipped</strong></p>
+                            <p>Expected: October 28, 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button class="download-btn" onclick="generatePDF()">
+                <i class="fas fa-file-pdf"></i>
+                Download Invoice
+            </button>
+            <button class="download-btn" style="background: var(--primary);"
+                onclick="window.location.href='index.html'">
+                <i class="fas fa-shopping-cart"></i>
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function generatePDF() {
+            const instructionDiv = document.createElement('div');
+            instructionDiv.style.position = 'fixed';
+            instructionDiv.style.top = '10px';
+            instructionDiv.style.left = '50%';
+            instructionDiv.style.transform = 'translateX(-50%)';
+            instructionDiv.style.backgroundColor = 'rgba(37, 99, 235, 0.9)';
+            instructionDiv.style.color = 'white';
+            instructionDiv.style.padding = '10px 20px';
+            instructionDiv.style.borderRadius = '5px';
+            instructionDiv.style.zIndex = '9999';
+            instructionDiv.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            instructionDiv.style.fontWeight = 'bold';
+            instructionDiv.innerHTML = 'Please select "Save as PDF" option in the print dialog to download your invoice';
+
+            const style = document.createElement('style');
+            style.type = 'text/css';
+            style.id = 'print-style';
+            style.innerHTML = `
+                @media print {
+                    body * {
+                        visibility: hidden;
+                    }
+                    #pdfContent, #pdfContent * {
+                        visibility: visible;
+                    }
+                    #pdfContent {
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 100%;
+                    }
+                    .button-group, .confirmation-header {
+                        display: none !important;
+                    }
+                }
+            `;
+
+            document.head.appendChild(style);
+            document.body.appendChild(instructionDiv);
+
+            setTimeout(() => {
+                window.print();
+                setTimeout(() => {
+                    document.head.removeChild(style);
+                    document.body.removeChild(instructionDiv);
+                }, 1000);
+            }, 500);
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Generate random order number
+            const orderNumber = '#TS' + Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('orderNumber').textContent = orderNumber;
+
+            // Set order and delivery dates
+            const now = new Date();
+            document.getElementById('orderDate').textContent = now.toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+
+            const deliveryDate = new Date(now);
+            deliveryDate.setDate(now.getDate() + 5);
+            document.getElementById('deliveryDate').textContent = deliveryDate.toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+
+           
+
+            // Retrieve payment method
+            const paymentMethod = localStorage.getItem('paymentMethod') || 'cod';
+            const paymentDetails = document.getElementById('paymentDetails');
+            if (paymentMethod === 'credit_card') {
+                paymentDetails.innerHTML = `
+                    <p><strong>Credit Card</strong></p>
+                    <p>Ending in **** ${localStorage.getItem('lastFourDigits') || '4242'}</p>
+                `;
+            } else if (paymentMethod === 'paypal') {
+                paymentDetails.innerHTML = `<p><strong>PayPal</strong></p>`;
+            } else {
+                paymentDetails.innerHTML = `
+                    <p><strong>Cash on Delivery</strong></p>
+                    <p>Additional CA$20.00 fee applied</p>
+                `;
+            }
+
+            // Load order items
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const orderItemsContainer = document.getElementById('confirmationItems');
+
+            const parsePrice = (price) => parseFloat(price.replace('CA$', '').replace(/,/g, ''));
+            const formatPrice = (amount) => `CA$${amount.toLocaleString('en-CA', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })}`;
+
+            orderItemsContainer.innerHTML = cartItems.map(item => `
+                <div class="order-item">
+                    <img src="${item.image}" alt="${item.name}" class="item-image">
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p>Qty: ${item.quantity}</p>
+                        <p class="item-price">${formatPrice(parsePrice(item.price) * item.quantity)}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Calculate totals
+            const shipping = 130.00;
+            const codFee = paymentMethod === 'cod' ? 20.00 : 0;
+            const subtotal = cartItems.reduce((acc, item) => acc + (parsePrice(item.price) * item.quantity), 0);
+            const tax = (subtotal + shipping) * 0.13;
+            const total = subtotal + shipping + tax + codFee;
+
+            // Update totals display
+            document.getElementById('confirmSubtotal').textContent = formatPrice(subtotal);
+            document.getElementById('confirmShipping').textContent = formatPrice(shipping);
+            document.getElementById('confirmTax').textContent = formatPrice(tax);
+            document.getElementById('confirmTotal').textContent = formatPrice(total);
+
+            if (paymentMethod === 'cod') {
+                document.querySelector('.cod-fee').style.display = 'flex';
+                document.getElementById('codFee').textContent = formatPrice(20.00);
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

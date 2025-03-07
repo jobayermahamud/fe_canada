@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <title>Made By Canadians</title>
+    <link rel="stylesheet" href="css/about.css">
+    <style>
+        @font-face {
+            font-family: 'font_MBC_unisans';
+            src: url('font/Uni_Sans_Heavy_Caps.ttf');
+        }
+
+        @font-face {
+            font-family: 'font_MBC_inter';
+            src: url('font/Inter-VariableFont_opsz,wght.ttf');
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-items">
+                <a href="#" class="nav-item">Clothing & Apparel</a>
+                <a href="#" class="nav-item">Food & Beverages</a>
+                <a href="#" class="nav-item">Home & Living</a>
+                <a href="#" class="nav-item">Beauty & Skincare</a>
+                <a href="#" class="nav-item">Electronics</a>
+                <a href="#" class="nav-item">Toys & Games</a>
+                <a href="#" class="nav-item">Tech & Getgets</a>
+
+            </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <span class="menu-icon">☰</span>
+        </button>
+        </div>
+    </nav>
+
+    <div class="about-content">
+        <div class="about-hero">
+            <h1>About Us</h1>
+        </div>
+
+        <div class="about-section">
+            <p>
+                The <strong>"Made by Canadians"</strong> initiative was founded to spotlight locally crafted products and empower the businesses behind them. As global supply chains dominate markets, this platform redirects attention to the rich diversity of goods originating from Canada. By promoting these products, we aim to strengthen domestic industries, support local jobs, and foster national pride among consumers.
+            </p>
+        </div><br>
+
+        <div class="about-section">
+            <p>
+                Inspired by the <strong>"Buy Canadian, Bye American"</strong> movement, our platform encourages thoughtful purchasing decisions. Choosing Canadian-made goods ensures not only quality but also direct support for local economies, creating a more resilient and self-sufficient marketplace. This movement reflects a growing awareness of how everyday purchases can drive positive change within communities.
+            </p>
+        </div><br>
+
+        <div class="about-section">
+            <p>
+                <strong>"Made by Canadians"</strong> connects conscientious shoppers with authentic Canadian brands across categories like fashion, food, technology, and home goods. Through this platform, we're building a community that values local enterprise, ensuring that the benefits of consumer spending remain within Canada and contribute to its long-term prosperity.
+            </p>
+        </div><br><br>
+
+        <div class="roadmap">
+            <h2>Our 3E Roadmap</h2>
+            <ol class="roadmap-numbered">
+                <li>
+                    <strong>Enable Direct On-Site Purchases</strong> – Develop a seamless in-house purchasing system to eliminate reliance on foreign platforms and minimizing costs for Canadians.
+                </li><br>
+                <li>
+                    <strong>Expand Offerings Through Direct Sourcing</strong> – Partner directly with local suppliers and manufacturers to cut out middlemen, ensuring better quality and pricing.
+                </li><br>
+                <li>
+                    <strong>Establish a Sustainable Logistics and Delivery Network</strong> – Build an efficient, eco-friendly end-to-end supply chain to support long-term growth and reliability, removing dependency on foreign owned service providers.
+                </li><br>
+            </ol>
+        </div>
+    </div>
+    
+
+        
+        <footer>
+            <div class="footer-container">
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="policy.html">Policy</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="copyright">
+                    © 2025 madebycanadians.ca
+                </div>
+            </div>
+        </footer>
+    </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+            <img src="images/logo.png" alt="Company Logo" style="width: 50px; height: 50px; margin-right: 10px;">
+            <span style="font-size: 18px; font-weight: bold;">Made By Canadians</span>
+        </div>
+    
+        <button class="close-sidebar" id="closeSidebar">×</button>
+        
+        </div>
+    </div>
+    
+</body>
+<script src="js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+    $(document).ready(function() {
+    GetCategoryData();
+    GetProductData(4);
+    GetVendorData();
+    });
+</script>
+
+
+</html>

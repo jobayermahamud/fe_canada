@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | Made By Canadians</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+    <div class="cart-container">
+        <div class="cart-header">
+            <h1><img src="images/logo.png" width="80px">Made By Canadians</h1>
+            <button class="back-btn" onclick="window.location.href='index.html'">
+                <i class="fas fa-arrow-left"></i>
+                Back to Shopping
+            </button>
+        </div>
+
+        <div class="cart-content">
+            <div class="cart-items">
+            </div>
+
+            <div class="order-summary">
+                <h2 class="summary-title">Order Summary</h2>
+                <div class="summary-item">
+                    <span class="item-count">Subtotal (0 items):</span>
+                    <span class="subtotal">CA$0.00</span>
+                </div>
+                <div class="summary-item">
+                    <span>Shipping:</span>
+                    <span class="shipping">CA$0.00</span>
+                </div>
+                <div class="summary-item total">
+                    <strong>Total:</strong>
+                    <strong class="total-price">CA$0.00</strong>
+                </div>
+
+                <div class="promo-section">
+                    <input type="text" class="promo-input" placeholder="Enter promo code">
+                    <button class="apply-btn">Apply Code</button>
+                </div>
+
+              <a href="payment_checkout.html"><button class="checkout-btn">Secure Checkout <i class="fas fa-lock"></i></button></a> 
+                
+                <div class="payment-methods">
+                    <img src="images/payment_method.jpg" alt="Payment methods">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toast-message">Message here</span>
+    </div>
+
+    <script>
+        let discount = 0;
+        const shippingCharge = 130; 
+    
+        function updateCart() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const container = document.querySelector('.cart-items');
+            container.innerHTML = '';
+    
+            if (cartItems.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h2>Your cart is empty</h2>
+                        <p>Continue shopping to add items to your cart</p>
+                    </div>
+                `;
+                updateSummary(0, 0, 0);
+                return;
+            }
+    
+            cartItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                
+                // Ensure quantity exists and is at least 1
+                if (!item.quantity || item.quantity < 1) {
+                    item.quantity = 1;
+                }
+    
+                itemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="item-image">
+                    <div class="item-details">
+                        <h3 class="item-title">${item.name}</h3>
+                        <p class="item-price">${item.price}</p>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn minus" data-index="${index}">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="quantity-btn plus" data-index="${index}">+</button>
+                        </div>
+                        <p class="added-time"><small>Added: ${item.time}</small></p>
+                    </div>
+                    <button class="remove-btn" data-index="${index}">
+                        <i class="fas fa-trash"></i> Remove
+                    </button>
+                `;
+    
+                container.appendChild(itemElement);
+            });
+    
+            // Save the updated cart items back to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            calculateTotal();
+            addEventListeners();
+        }
+    
+        function calculateTotal() {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            let subtotal = 0;
+            let totalItems = 0;
+            
+            cartItems.forEach(item => {
+                const priceValue = parseFloat(item.price.replace(/[^0-9.]/g, ''));
+                const quantity = item.quantity || 1;
+                subtotal += priceValue * quantity;
+                totalItems += quantity;
+            });
+    
+            // Apply shipping charge only if there are items in the cart
+            const shipping = totalItems > 0 ? shippingCharge : 0;
+            const total = (subtotal + shipping) * (1 - discount); 
+    
+            updateSummary(subtotal, total, totalItems);
+        }
+    
+        function updateSummary(subtotal, total, itemCount) {
+            document.querySelector('.item-count').textContent = `Subtotal (${itemCount} item${itemCount !== 1 ? 's' : ''}):`;
+            document.querySelector('.subtotal').textContent = `CA$${subtotal.toFixed(2)}`;
+            
+            // Only show shipping charge if there are items
+            const shipping = itemCount > 0 ? shippingCharge : 0;
+            document.querySelector('.shipping').textContent = `CA$${shipping.toFixed(2)}`; 
+            document.querySelector('.total-price').textContent = `CA$${total.toFixed(2)}`;
+        }
+    
+        function addEventListeners() {
+            // Remove item button event listeners
+            document.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const index = parseInt(btn.dataset.index);
+                    if (confirm('Are you sure you want to remove this item?')) {
+                        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                        cartItems.splice(index, 1);
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                        updateCart();
+                        showToast('Item removed from cart');
+                    }
+                });
+            });
+    
+            // Quantity adjustment button event listeners
+            document.querySelectorAll('.quantity-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const index = parseInt(btn.dataset.index);
+                    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+                    
+                    if (!cartItems[index].quantity) {
+                        cartItems[index].quantity = 1;
+                    }
+                    
+                    if (btn.classList.contains('plus')) {
+                        cartItems[index].quantity++;
+                    } else if (btn.classList.contains('minus') && cartItems[index].quantity > 1) {
+                        cartItems[index].quantity--;
+                    }
+                    
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                    updateCart();
+                });
+            });
+    
+            // Promo code button event listener
+            document.querySelector('.apply-btn').addEventListener('click', applyPromo);
+        }
+    
+        function applyPromo() {
+            const promoCode = document.querySelector('.promo-input').value.trim();
+            if (promoCode.toUpperCase() === 'DISCOUNT10') {
+                discount = 0.1;
+                calculateTotal();
+                showToast('Promo code applied: 10% discount');
+            } else {
+                showToast('Invalid promo code', false);
+            }
+        }
+        
+        function showToast(message, isSuccess = true) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toast-message');
+            
+            // Set icon based on success/failure
+            const icon = toast.querySelector('i');
+            if (isSuccess) {
+                icon.className = 'fas fa-check-circle';
+                icon.style.color = '#4CAF50';
+            } else {
+                icon.className = 'fas fa-exclamation-circle';
+                icon.style.color = '#F44336';
+            }
+            
+            toastMessage.textContent = message;
+            toast.style.visibility = 'visible';
+            toast.style.opacity = '1';
+            
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => {
+                    toast.style.visibility = 'hidden';
+                }, 500);
+            }, 3000);
+        }
+    
+        document.addEventListener('DOMContentLoaded', updateCart);
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <title>Contact Form</title>
+    <style>
+        @font-face {
+            font-family: 'font_MBC_unisans';
+            src: url('font/Uni_Sans_Heavy_Caps.ttf');
+        }
+        .sidebar-nav-item{
+            font-family: font_MBC_inter !important;
+        }
+        @font-face {
+            font-family: 'font_MBC_inter';
+            src: url('font/Inter-VariableFont_opsz,wght.ttf');
+        }
+        .form-container {
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-items">
+                <a href="#" class="nav-item">Clothing & Apparel</a>
+                <a href="#" class="nav-item">Food & Beverages</a>
+                <a href="#" class="nav-item">Home & Living</a>
+                <a href="#" class="nav-item">Beauty & Skincare</a>
+                <a href="#" class="nav-item">Electronics</a>
+                <a href="#" class="nav-item">Toys & Games</a>
+                <a href="#" class="nav-item">Tech & Getgets</a>
+
+            </div>
+        </div>
+        <button class="menu-toggle" id="menuToggle">
+            <span class="menu-icon">☰</span>
+        </button>
+        </div>
+    </nav>
+    
+    <div class="form-container">
+        <form id="contactForm">
+            <h1>Contact Form: </h1><br><br><br>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="firstName">First Name*</label>
+                    <input class="form-input" type="text" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="lastName">Last Name*</label>
+                    <input class="form-input" type="text" id="lastName" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="phone">Phone Number*</label>
+                    <input class="form-input" type="tel" id="phoneNumber" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address*</label>
+                    <input class="form-input" type="email" id="email" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="business">Business Name</label>
+                    <input class="form-input" type="text" id="businessName">
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="website">Website URL</label>
+                    <input class="form-input" type="url" id="websiteURL">
+                </div>
+            </div>
+
+            <div class="form-row" style="margin-bottom: 40px;">
+                <div class="form-group" style="flex: 1 0 100%;">
+                    <label class="form-label" for="message">Tell us how we can help</label>
+                    <textarea class="form-textarea" id="message"></textarea>
+                </div>
+            </div>
+
+            <div class="submit-container">
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="policy.html">Policy</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="copyright">
+                © 2025 madebycanadians.ca
+            </div>
+        </div>
+    </footer>
+</div>
+</div>
+<div class="sidebar" id="sidebar">
+    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+        <img src="images/logo.png" alt="Company Logo" style="width: 50px; height: 50px; margin-right: 10px;">
+        <span style="font-size: 18px; font-weight: bold;">Made By Canadians</span>
+    </div>
+
+    <button class="close-sidebar" id="closeSidebar">×</button>
+    
+    </div>
+</div>
+</body>
+<script src="js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/script.js"></script>
+
+<script>
+    $(document).ready(function() {
+    GetCategoryData();
+    GetProductData(4);
+    GetVendorData();
+    });
+</script>
+
+</html>

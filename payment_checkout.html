@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Checkout | TechStore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/payment_checkout.css">
+</head>
+
+<body>
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h1>Secure Checkout</h1>
+            <div class="checkout-progress">
+                <div class="progress-step completed">
+                    <div class="step-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <span style="color: black;">Cart</span>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <span style="color: black;">Shipping</span>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle" style="color: black;"></i>
+                    </div>
+                    <span style="color: black;">Confirm</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkout-content">
+            <div class="checkout-form">
+                <div class="form-section">
+                    <h2>Shipping Address</h2>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" class="form-control" required>
+                        <i class="fas fa-user form-icon"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" class="form-control" required>
+                        <i class="fas fa-envelope form-icon"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" class="form-control" required>
+                        <i class="fas fa-phone form-icon"></i>
+                    </div>
+                    <div class="form-group">
+                        <label>Street Address</label>
+                        <input type="text" class="form-control" required>
+                        <i class="fas fa-home form-icon"></i>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" class="form-control" required>
+                            <i class="fas fa-city form-icon"></i>
+                        </div>
+                        <div class="form-group">
+                            <label>State/Province</label>
+                            <input type="text" class="form-control" required>
+                            <i class="fas fa-map-marker-alt form-icon"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label>ZIP/Postal Code</label>
+                            <input type="text" class="form-control" required>
+                            <i class="fas fa-map-pin form-icon"></i>
+                        </div>
+                        <div class="form-group">
+                            <label>Country</label>
+                            <select class="form-control" required>
+                                <option>United States</option>
+                                <option>Canada</option>
+                                <option>United Kingdom</option>
+                                <option>Australia</option>
+                                <option>India</option>
+                            </select>
+                            <i class="fas fa-globe form-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>Payment Method</h2>
+
+                    <div class="payment-option">
+                        <div class="payment-toggle">
+                            <input type="radio" name="payment_type" id="credit_card" value="credit_card" checked
+                                onchange="togglePaymentMethod('credit_card')">
+                            <label for="credit_card">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Credit Card</span>
+                            </label>
+
+                            <input type="radio" name="payment_type" id="paypal" value="paypal"
+                                onchange="togglePaymentMethod('paypal')">
+                            <label for="paypal">
+                                <i class="fab fa-paypal"></i>
+                                <span>PayPal</span>
+                            </label>
+
+                            <input type="radio" name="payment_type" id="cod" value="cod"
+                                onchange="togglePaymentMethod('cod')">
+                            <label for="cod">
+                                <i class="fas fa-truck"></i>
+                                <span>Cash on Delivery</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="credit_card_details" class="payment-card-details active">
+                        <div class="payment-methods">
+                            <div class="payment-card active">
+                                <img src="images/visa.png" alt="Visa">
+                                <div>Visa Cart</div>
+                            </div>
+                            <div class="payment-card">
+                                <img src="images/mastercard-icon-2048x1587-tygju446.png" alt="Mastercard">
+                                <div>Mastercard</div>
+                            </div>
+                            <div class="payment-card">
+                                <img src="images/Payoneer.jpg" alt="Amex">
+                                <div>Payoneer</div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input type="text" class="form-control" placeholder="4242 4242 4242 4242" required>
+                            <i class="fas fa-credit-card form-icon"></i>
+                        </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <label>Expiration Date</label>
+                                <input type="text" class="form-control" placeholder="MM/YY" required>
+                                <i class="fas fa-calendar form-icon"></i>
+                            </div>
+                            <div class="form-group">
+                                <label>CVC</label>
+                                <input type="text" class="form-control" placeholder="123" required>
+                                <i class="fas fa-lock form-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox"> Save card for future purchases
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="paypal_details" class="payment-card-details">
+                        <div class="form-group">
+                            <p>You will be redirected to PayPal to complete your payment.</p>
+                        </div>
+                    </div>
+
+                    <div id="cod_details" class="payment-card-details">
+                        <div class="form-group">
+                            <p>You will pay when the product is delivered. Additional fee of CA$20.00 applies.</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Additional notes for delivery</label>
+                            <textarea class="form-control" rows="3"
+                                placeholder="Special instructions for delivery"></textarea>
+                            <i class="fas fa-sticky-note form-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <div class="order-items">
+                    <!-- Dynamic items will be inserted here -->
+                </div>
+
+                <div class="price-breakdown">
+                    <div class="price-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">CA$0.00</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Shipping:</span>
+                        <span id="shipping">CA$130.00</span>
+                    </div>
+                    <div class="price-row">
+                        <span>Tax:</span>
+                        <span id="tax">CA$0.00</span>
+                    </div>
+                    <div class="price-row cod-fee" style="display: none;">
+                        <span>Cash on Delivery Fee:</span>
+                        <span>CA$20.00</span>
+                    </div>
+                </div>
+
+                <div class="price-row total">
+                    <strong>Total:</strong>
+                    <strong id="total-amount">CA$0.00</strong>
+                </div>
+            </div>
+
+
+
+            <a href="confirm.html"><button class="checkout-btn">Complete Purchase <i
+                        class="fas fa-lock"></i></button></a>
+
+            <div class="security-info">
+                <div class="security-badge">
+                    <div class="badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>256-bit SSL</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-undo"></i>
+                        <span>30-Day Return</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-truck"></i>
+                        <span>Free Shipping</span>
+                    </div>
+                </div>
+                <p><i class="fas fa-lock"></i> Your personal data is secure</p>
+                <p><i class="fas fa-check-circle"></i> 100% Purchase Protection</p>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        function togglePaymentMethod(method) {
+            document.getElementById('credit_card_details').classList.remove('active');
+            document.getElementById('paypal_details').classList.remove('active');
+            document.getElementById('cod_details').classList.remove('active');
+
+            document.getElementById(method + '_details').classList.add('active');
+
+            const codFeeElement = document.querySelector('.cod-fee');
+            const totalElement = document.getElementById('total-amount');
+
+            if (method === 'cod') {
+                codFeeElement.style.display = 'flex';
+                totalElement.textContent = 'CA$2,268.53';
+            } else {
+                codFeeElement.style.display = 'none';
+                totalElement.textContent = 'CA$2,248.53';
+            }
+        }
+
+
+        const paymentCards = document.querySelectorAll('.payment-card');
+        paymentCards.forEach(card => {
+            card.addEventListener('click', () => {
+                paymentCards.forEach(c => c.classList.remove('active'));
+                card.classList.add('active');
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const orderItemsContainer = document.querySelector('.order-items');
+            const subtotalElement = document.getElementById('subtotal');
+            const taxElement = document.getElementById('tax');
+            const totalElement = document.getElementById('total-amount');
+            const codFeeElement = document.querySelector('.cod-fee');
+
+            // Helper functions
+            const parsePrice = (price) => parseFloat(price.replace('CA$', '').replace(/,/g, ''));
+            const formatPrice = (amount) => `CA$${amount.toLocaleString('en-CA', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            })}`;
+
+            // Populate order items
+            orderItemsContainer.innerHTML = cartItems.map(item => `
+                <div class="order-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div>
+                        <h3>${item.name}</h3>
+                        <p>${item.price}</p>
+                        <p>Qty: ${item.quantity}</p>
+                        <p class="item-price">${formatPrice(parsePrice(item.price) * item.quantity)}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Calculate prices
+            const calculateTotals = (includeCODFee = false) => {
+                const shipping = 130.00;
+                const codFee = includeCODFee ? 20.00 : 0;
+                const subtotal = cartItems.reduce((acc, item) =>
+                    acc + (parsePrice(item.price) * item.quantity), 0);
+                const tax = (subtotal + shipping) * 0.13;
+                const total = subtotal + shipping + tax + codFee;
+
+                return { subtotal, tax, total, codFee };
+            };
+
+            // Initial calculation
+            let currentTotals = calculateTotals();
+            subtotalElement.textContent = formatPrice(currentTotals.subtotal);
+            taxElement.textContent = formatPrice(currentTotals.tax);
+            totalElement.textContent = formatPrice(currentTotals.total);
+
+            // Update payment method toggle function
+            window.togglePaymentMethod = function (method) {
+                document.getElementById('credit_card_details').classList.remove('active');
+                document.getElementById('paypal_details').classList.remove('active');
+                document.getElementById('cod_details').classList.remove('active');
+                document.getElementById(`${method}_details`).classList.add('active');
+
+                const isCOD = method === 'cod';
+                codFeeElement.style.display = isCOD ? 'flex' : 'none';
+
+                currentTotals = calculateTotals(isCOD);
+                totalElement.textContent = formatPrice(currentTotals.total);
+            };
+        });
+    </script>
+
+</body>
+
+</html>
